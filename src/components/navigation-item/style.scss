@@ -1,0 +1,28 @@
+.nav__item {
+    width: 185px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border-radius: 6px;
+   svg {
+    width: 24px;
+    height: 24px;
+   }
+   p {
+    margin-left: 16px;
+   }
+}
+
+.active {
+    background-color: #C06ECC;
+    p {
+        color: white;
+    }
+    svg path{
+        fill: white;
+    }
+}
+
+
+

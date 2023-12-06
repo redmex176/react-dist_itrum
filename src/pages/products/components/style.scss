@@ -1,0 +1,25 @@
+span, select, input {
+    color: #434652;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    font-size: 14px;
+} 
+
+.wrapp {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 959px;
+    padding: 24px;
+    gap: 24px;
+    
+}
+
+.search-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    max-width: 959px;
+    gap: 24px;
+}

@@ -1,0 +1,40 @@
+.filter {
+    display: flex;
+    align-items: center;
+    max-width: 959px;
+    height: 32px;
+    align-self: end;
+    
+    input {
+        width: 28px;
+        text-align: center;
+    }
+    select {
+        margin-left: 8px;
+        width: auto;
+    }
+    input, select, button {
+        border: 1px solid #D0D3DA;
+        height: 32px;
+        border-radius: 4px;
+    }
+    button {
+        height: 32px;
+        width: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    span:nth-child(3) {
+        margin-left: 16px;
+    }
+    input:nth-child(4) {
+        margin-left: 8px;
+    }
+    span:nth-child(5) {
+        margin-left: 4px;
+    }
+    button:nth-child(6) {
+        margin-left: 16px;
+    }
+}
