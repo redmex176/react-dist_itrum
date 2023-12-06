@@ -9,7 +9,7 @@ import ModalProducts from './modal/index.jsx';
 import productsList from '../../../constants/products.jsx';
 import { useEffect, useState } from 'react';
 import ModalTask from './modal-task/index.jsx';
-
+ 
 function Products() {
     // console.log('Products');
     const [productList, setProductsList] = useState(productsList);
