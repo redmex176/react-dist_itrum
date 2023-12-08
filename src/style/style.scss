@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import './variables.scss';
+@import './theme.scss';
 
 * {
     font-family: "Inter", sans-serif;
@@ -57,5 +57,5 @@ button {
     cursor: pointer;
 }
 #root {
-    padding: 24px 96px 24px 96px;
+    padding: 1.5rem 6rem 1.5rem 6rem;
 }

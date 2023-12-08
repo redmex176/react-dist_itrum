@@ -1,3 +1,5 @@
+@import '../../../../style/theme.scss';
+
 .filter {
     display: flex;
     align-items: center;
@@ -10,11 +12,11 @@
         text-align: center;
     }
     select {
-        margin-left: 8px;
+        margin-left: 0.5rem;
         width: auto;
     }
     input, select, button {
-        border: 1px solid #D0D3DA;
+        border: 1px solid $gray-border;
         height: 32px;
         border-radius: 4px;
     }
@@ -26,15 +28,15 @@
         align-items: center;
     }
     span:nth-child(3) {
-        margin-left: 16px;
+        margin-left: 1rem;
     }
     input:nth-child(4) {
-        margin-left: 8px;
+        margin-left: 0.5rem;
     }
     span:nth-child(5) {
-        margin-left: 4px;
+        margin-left: 0.25rem;
     }
     button:nth-child(6) {
-        margin-left: 16px;
+        margin-left: 1rem;
     }
 }

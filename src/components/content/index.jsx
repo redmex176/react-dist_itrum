@@ -1,8 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
+import Products from '../../pages/products/components';
 
 import '../content/style.scss'
-
-import Products from '../../pages/products/components';
 
 function Content() {
     console.log('content');

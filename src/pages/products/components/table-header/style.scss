@@ -1,18 +1,20 @@
+@import '../../../../style/theme.scss';
+
 .table__header {
     display: flex;
     align-items: center;
     height: 44px;
-    border-top: 1px solid #D0D3DA;
-    border-bottom: 1px solid #D0D3DA;
-    background-color: #F8F8FA;
+    border-top: 1px solid $gray-border;
+    border-bottom: 1px solid $gray-border;
+    background-color: $active-nav;
     span {
-        color: #737680;
+        color: $gray-span;
     }
     li {
-        padding: 10px 8px 10px 8px;
+        padding: 0.625rem 0.5rem 0.625rem 0.5rem;
     }
     li:nth-child(1) {
-        padding: 16px;
+        padding: 1rem;
         height: 44px;
         display: flex;
         align-items:center;
@@ -20,7 +22,7 @@
         input {
             width: 16px;
             height: 16px;
-            border: 1px solid #D0D3DA;
+            border: 1px solid $gray-border;
         }
     }
     li:nth-child(2) {

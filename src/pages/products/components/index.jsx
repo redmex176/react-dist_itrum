@@ -1,18 +1,20 @@
-import '../components/style.scss';
+import { useEffect, useState } from 'react';
+
 import ProductsBtn from './products-button';
 import SearchFilter from './search-filter';
 import SearchPanel from './search-panel';
 import TableList from './table-list';
 import TableHeader from './table-header';
 import ModalProducts from './modal/index.jsx';
-
-import productsList from '../../../constants/products.jsx';
-import { useEffect, useState } from 'react';
 import ModalTask from './modal-task/index.jsx';
+
+import PRODUCTS_DATA from '../../../constants/products.js';
+
+import '../components/style.scss';
 
 function Products() {
     // console.log('Products');
-    const [productList, setProductsList] = useState(productsList);
+    const [productList, setProductsList] = useState(PRODUCTS_DATA);
     const [pageList, setPageList] = useState(productList);
 
     let [page, setPage] = useState(10);
@@ -122,27 +124,14 @@ function Products() {
             setProductsList([...productList, newItemObject]);
             setModalTask(false);
         }
-    
         e.target.reset();
     }
 
-    const openModalTask = (e)=> {
-        modalTask = !modalTask;
-        setModalTask(modalTask);
-    }
-    
     const closeModalTask = (e)=> {
         if(e.target.classList.contains('modal__task')) {
-            modalTask = !modalTask;
-            setModalTask(modalTask);
+            setModalTask(modalTask = !modalTask);
         }
     }
-
-    const closeModal = () => {
-        modal = !modal;
-        setModal(modal);
-    }
-
 
     return (
         <div className="wrapp">
@@ -159,7 +148,7 @@ function Products() {
                 />
             </div>  
             <ProductsBtn 
-                openModalTask={openModalTask}
+                openModalTask={() => setModalTask(modalTask = !modalTask)}
             />
             <div className='table-products'>
                 <TableHeader 
@@ -173,7 +162,7 @@ function Products() {
             <ModalProducts 
                 list={productList}
                 onDelete={onDelete}
-                closeModal={closeModal}
+                closeModal={() => setModal(!modal)}
                 modal={modal}
             />
             <ModalTask 
