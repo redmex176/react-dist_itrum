@@ -1,26 +1,29 @@
+@import '../../../src/style/theme.scss';
+
 .nav__item {
     width: 185px;
     height: 56px;
     display: flex;
     align-items: center;
-    padding: 16px;
+    padding: 0.625rem;
     border-radius: 6px;
-   svg {
+    svg {
     width: 24px;
     height: 24px;
    }
    p {
-    margin-left: 16px;
+    margin-left: 0.625rem;
    }
+ 
 }
 
 .active {
-    background-color: #C06ECC;
+    background-color: $active;
     p {
-        color: white;
+        color: $active-nav;
     }
     svg path{
-        fill: white;
+        fill: $active-nav;
     }
 }
 

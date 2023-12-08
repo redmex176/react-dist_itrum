@@ -1,9 +1,11 @@
+@import '../../../../style/theme.scss';
+
 .search {
     height: 40px;
     width: 100%;
     max-width: 320px;
     border-radius: 8px;
-    padding: 8px 12px 8px 12px;
+    padding: 0.5rem 0.75rem 0.5rem  0.75rem;
     align-self: end;
-    border: 1px solid #D0D3DA;
+    border: 1px solid $gray-border;
 }

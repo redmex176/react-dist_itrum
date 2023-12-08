@@ -6,13 +6,13 @@ import TableList from './table-list';
 import TableHeader from './table-header';
 import ModalProducts from './modal/index.jsx';
 
-import productsList from '../../../constants/products.jsx';
+import PRODUCTS_DATA from '../../../constants/products.js';
 import { useEffect, useState } from 'react';
 import ModalTask from './modal-task/index.jsx';
  
 function Products() {
     // console.log('Products');
-    const [productList, setProductsList] = useState(productsList);
+    const [productList, setProductsList] = useState(PRODUCTS_DATA);
     const [pageList, setPageList] = useState(productList);
 
     let [page, setPage] = useState(10);

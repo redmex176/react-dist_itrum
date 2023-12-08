@@ -1,10 +1,10 @@
 import {BrowserRouter} from 'react-router-dom';
 
-import './style.scss';
+import Navigation from './components/navigation/index';
+import Content from './components/content';
 
-import Navigation from '../navigation/index';
-import Content from '../content';
 
+import './app.scss';
 
 function App() {
     return (

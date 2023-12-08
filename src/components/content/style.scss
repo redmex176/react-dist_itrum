@@ -1,6 +1,7 @@
+@import '../../../src/style/theme.scss';
+
 .content {
     width: 959px;
-
-    background-color: white;
+    background-color: $active-nav;
     border-radius: 24px 24px 0px 0px;
 }

@@ -1,12 +1,14 @@
+@import '../../../../style/theme.scss';
+
 .products__btn {
-    background-color: #BD68CA;
+    background-color: $btn-bgc-border;
     border-radius: 8px;
-    padding: 8px 20px 8px 20px;
-    border: 0px solid #000;
+    padding: 0.5rem 1.25rem 0.5rem 1.25rem;
+    border: 0px solid $background-black;
     font-family: Inter ;
     width: 100%;
     span {
-        color: #FFF;
+        color: $active-nav;
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
