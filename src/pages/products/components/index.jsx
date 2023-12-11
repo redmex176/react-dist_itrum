@@ -1,12 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import ProductsBtn from './products-button';
-import SearchFilter from './search-filter';
-import SearchPanel from './search-panel';
-import TableList from './table-list';
-import TableHeader from './table-header';
-import ModalProducts from './modal/index.jsx';
-import ModalTask from './modal-task/index.jsx';
+import {ProductsBtn, SearchFilter, SearchPanel, TableList, TableHeader, ModalProducts, ModalTask} from '../../../components/index.jsx';
 
 import PRODUCTS_DATA from '../../../constants/products.js';
 
