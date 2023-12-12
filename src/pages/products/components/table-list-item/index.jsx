@@ -1,11 +1,11 @@
-import '../table-list-item/style.scss';
+import styles from '../table-list-item/style.module.scss';
 
 function TableListItem(props) {
 
     const {category, subCategory, brand, products, cashback, checked, onCheckboxChange } = props;
 
     return(
-        <ul className='list__item'>
+        <ul className={styles.list__item}>
             <li>
                 <input type="checkbox" name="checkbox"  checked={checked} onChange={onCheckboxChange}/>
             </li>

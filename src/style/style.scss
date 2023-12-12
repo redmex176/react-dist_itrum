@@ -53,9 +53,21 @@ input::-webkit-inner-spin-button {
 body {
     background-color: $gray-space;
 }
+
 button {
     cursor: pointer;
 }
+
 #root {
     padding: 1.5rem 6rem 1.5rem 6rem;
+}
+
+.active {
+    background-color: $active;
+    p {
+        color: $active-nav;
+    }
+    svg path{
+        fill: $active-nav;
+    }
 }

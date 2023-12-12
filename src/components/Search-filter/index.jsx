@@ -1,4 +1,4 @@
-import '../search-filter/style.scss';
+import styles from '../search-filter/style.module.scss';
 
 function SearchFilter({filterProducts, list, page, prevPage, nextPage, currentPage, currentPageToggle}) {
     let count = list.length;
@@ -6,7 +6,7 @@ function SearchFilter({filterProducts, list, page, prevPage, nextPage, currentPa
     count = Math.ceil((count / page));
 
     return(
-        <div className="filter">
+        <div className={styles.filter}>
             <span>Показывать</span>
             <select onChange={filterProducts} name="select">
                 <option value="10">10</option>

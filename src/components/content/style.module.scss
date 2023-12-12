@@ -5,3 +5,11 @@
     background-color: $active-nav;
     border-radius: 24px 24px 0px 0px;
 }
+
+.show {
+    display: flex;
+} 
+
+.hide {
+    display: none;
+}

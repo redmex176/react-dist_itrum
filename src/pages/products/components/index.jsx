@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react';
 
-import {ProductsBtn, SearchFilter, SearchPanel, TableList, TableHeader, ModalProducts, ModalTask} from '../../../components/index.jsx';
-
+// import {ProductsBtn, SearchFilter, SearchPanel, TableList, TableHeader, ModalProducts, ModalTask} from '../../../components/index.jsx';
+import ProductsBtn from './Products-button/index.jsx';
+import SearchFilter from '../../../components/Search-filter';
+import SearchPanel from '../../../components/Search-panel';
+import TableList from './Table-list/index.jsx';
+import TableHeader from './Table-header/index.jsx';
+import ModalProducts from './Modal/index.jsx';
+import ModalTask from './Modal-task/index.jsx';
 
 import PRODUCTS_DATA from '../../../constants/products.js';
-
-import '../components/style.scss';
+ 
+import styles from '../components/style.module.scss';
 
 function Products() {
     // console.log('Products');
@@ -68,8 +74,8 @@ function Products() {
         const updatedList = productList.filter(item => !item.checked);
         setProductsList(updatedList);
 
-        const newCurrentPage = Math.ceil(updatedList.length / page);
-        setCurrentPage(newCurrentPage > 0 ? newCurrentPage : 1);
+        // const newCurrentPage = Math.ceil(updatedList.length / page);
+        // setCurrentPage(newCurrentPage > 0 ? newCurrentPage : 1);
     }
 
     const filterProducts = (e) => {
@@ -123,14 +129,14 @@ function Products() {
     }
 
     const closeModalTask = (e)=> {
-        if(e.target.classList.contains('modal__task')) {
+        if(e.target.classList.contains(styles.modal__task)) {
             setModalTask(modalTask = !modalTask);
         }
     }
 
     return (
-        <div className="wrapp">
-            <div className="search-panel">
+        <div className={styles.wrapp}>
+            <div className={styles.search__panel}>
                 <SearchPanel />
                 <SearchFilter 
                       filterProducts={filterProducts} 
@@ -145,7 +151,7 @@ function Products() {
             <ProductsBtn 
                 openModalTask={() => setModalTask(modalTask = !modalTask)}
             />
-            <div className='table-products'>
+            <>
                 <TableHeader 
                     handleHeaderCheckboxChange={handleHeaderCheckboxChange}
                     />
@@ -153,7 +159,7 @@ function Products() {
                     onCheckboxChange={handleCheckboxChange}
                     list={currentItems}
                 />
-            </div>
+            </>
             <ModalProducts 
                 list={productList}
                 onDelete={onDelete}

@@ -1,0 +1,23 @@
+@import '../../style/theme.scss';
+
+.search {
+    
+    height: 40px;
+    width: 100%;
+    max-width: 320px;
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem 0.5rem  2.5rem;
+    align-self: end;
+    border: 1px solid $gray-border;
+    position: relative;
+   
+}
+
+.img {
+    position: absolute;
+    right: 40px;
+    top: 35px;
+    width: 16px;
+    height: 16px;
+}
+

@@ -1,13 +1,13 @@
 import TableListItem from "../table-list-item";
 
 import styles from '../table-list/style.module.scss'
-function TableList({ list, onCheckboxChange }) {
+function TableList({ list }) {
     
-    const elements = list.map(item => (
+    const elements = list.map((item) => (
+        
         <TableListItem 
-            key={item.id}
+            key={item.name+item.phone}
             {...item}
-            onCheckboxChange={() => onCheckboxChange(item.id)}
         />
     ));
 

@@ -1,10 +1,10 @@
-import '../table-header/style.scss'
+import style from'../table-header/style.module.scss'
 
 function TableHeader({handleHeaderCheckboxChange}) {
 
     console.log();
     return(
-        <ul className="table__header">
+        <ul className={style.table__header}>
             <li>
                 <input type="checkbox" name="checkbox" onChange={handleHeaderCheckboxChange}/>
             </li>

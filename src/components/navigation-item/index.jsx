@@ -1,13 +1,12 @@
 import { NavLink } from 'react-router-dom';
 
-import '../navigation-item/style.scss'
+import styles from'../navigation-item/style.module.scss'
 
 function NavigationItem( {text, img, to}) {
-
   return (
     <>
       <NavLink
-        className="nav__item" to={to}>
+        className={styles.nav__item} to={to}>
             {img}
             <p>{text}</p>
       </NavLink>

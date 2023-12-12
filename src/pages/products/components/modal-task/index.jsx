@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import '../modal-task/style.scss';
+import styles from'../modal-task/style.module.scss';
 
 function ModalTask ({addItem, newItem, setNewItem, modalTask, closeModalTask}) {
-    const activeModal = modalTask ? 'show fade' : 'hide';
+    const activeModal = modalTask ? `${styles.show} ${styles.fade}` : styles.hide;
 
     return(
-        <div onClick={closeModalTask}className={`modal__task ${activeModal}`}>
-            <form onSubmit={addItem} className="modal__content">
-                <div className="task__btns">
+        <div onClick={closeModalTask}className={`${styles.modal__task} ${activeModal}`}>
+            <form onSubmit={addItem} className={styles.modal__content}>
+                <div className={styles.task__btns}>
                     <button><span>Удалить</span></button>
                     <button><span>Сохранить</span></button>
                 </div>
-                <div className="form__add">
-                    <ul className='form__list'>
+                <div className={styles.form__add}>
+                    <ul className={styles.form__list}>
                         <li>
                             <span>Начисление кешбека с покупки</span>
                             <input 
