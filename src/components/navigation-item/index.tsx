@@ -1,8 +1,16 @@
+import React, { ReactNode } from 'react';
+
 import { NavLink } from 'react-router-dom';
 
 import styles from'../navigation-item/style.module.scss'
 
-function NavigationItem( {text, img, to}) {
+interface Props {
+  text : string,
+  img: ReactNode,
+  to: string
+}
+
+function NavigationItem( {text, img, to}: Props) {
   return (
     <>
       <NavLink

@@ -1,7 +1,8 @@
+import React from 'react';
 import {BrowserRouter} from 'react-router-dom';
 
-import Navigation from './components/navigation/index';
-import Content from './components/content';
+import Navigation from './components/Navigation';
+import Content from './components/Content';
 
 import styles from './app.module.scss';
 

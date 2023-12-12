@@ -1,9 +1,10 @@
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Products from '../../pages/Products/components';
 import Clients from '../../pages/Clients/components';
 
-import styles from '../content/style.module.scss'
+import styles from '../content/style.module.scss';
 
 function Content() {
     console.log('content');

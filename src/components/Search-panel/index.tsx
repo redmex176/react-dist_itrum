@@ -1,7 +1,15 @@
+import React from 'react';
 import styles from '../search-panel/style.module.scss';
+
 import svg from '../../img/x.svg';
 
-function SearchPanel({handleSearch, handleEmpty, value}) {
+interface Props {
+    handleSearch: any,
+    handleEmpty: any,
+    value: string
+}
+
+function SearchPanel({handleSearch, handleEmpty, value}: Props) {
     return(
         <>
             <input onChange={handleSearch}
@@ -20,3 +28,4 @@ function SearchPanel({handleSearch, handleEmpty, value}) {
 }
 
 export default SearchPanel;
+

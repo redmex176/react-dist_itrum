@@ -1,4 +1,6 @@
+import React from 'react';
 import styles from '../search-filter/style.module.scss';
+
 
 function SearchFilter({filterProducts, list, page, prevPage, nextPage, currentPage, currentPageToggle}) {
     let count = list.length;

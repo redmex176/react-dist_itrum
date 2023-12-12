@@ -1,6 +1,8 @@
-import styles from './style.module.scss';
+import React from 'react';
 
-import NavigationItem from '../navigation-item/index.jsx';
+import NavigationItem from '../Navigation-item/index.tsx';
+
+import styles from './style.module.scss';
 
 const Navigation = () => {
     return (

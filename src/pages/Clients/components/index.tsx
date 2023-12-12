@@ -1,10 +1,11 @@
+import React from 'react';
 import {useState} from 'react';
 
-import SearchPanel from '../../../components/Search-panel';
-import SearchFilter from '../../../components/Search-filter';
+import SearchPanel from '../../../components/Search-panel/index.js';
+import SearchFilter from '../../../components/Search-filter/index.js';
 
-import TableHeader from '../../Clients/components/Table-header';
-import TableList from '../../Clients/components/Table-list/index.jsx';
+import TableHeader from './Table-header/index.jsx';
+import TableList from './Table-list/index.jsx';
 
 import CLIENTS_DATA from '../../../constants/clients_request.js';
 

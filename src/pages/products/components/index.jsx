@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-// import {ProductsBtn, SearchFilter, SearchPanel, TableList, TableHeader, ModalProducts, ModalTask} from '../../../components/index.jsx';
 import ProductsBtn from './Products-button/index.jsx';
 import SearchFilter from '../../../components/Search-filter';
 import SearchPanel from '../../../components/Search-panel';
@@ -14,7 +13,7 @@ import PRODUCTS_DATA from '../../../constants/products.js';
 import styles from '../components/style.module.scss';
 
 function Products() {
-    // console.log('Products');
+
     const [productList, setProductsList] = useState(PRODUCTS_DATA);
     const [pageList, setPageList] = useState(productList);
 
