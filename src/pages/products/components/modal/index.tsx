@@ -1,8 +1,16 @@
+import React from 'react';
 import styles from'../modal/style.module.scss';
 
-function ModalProducts({list, onDelete, closeModal, modal}) {
-    const count = list.filter(item => item.checked).length ;
-    let clazz;
+interface Props {
+    list: any,
+    onDelete: any,
+    closeModal: any,
+    modal: boolean,   
+}
+
+const ModalProducts: React.FC<Props> = ({list, onDelete, closeModal, modal}) => {
+    const count = list.filter((item: { checked: any; }) => item.checked).length ;
+    let clazz : string;
 
     !modal ? clazz = count > 0 ? `${styles.show} ${styles.fade}`  : styles.hide : clazz = styles.hide;
 

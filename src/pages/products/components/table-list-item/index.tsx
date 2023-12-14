@@ -1,8 +1,17 @@
+import React from 'react';
 import styles from '../table-list-item/style.module.scss';
 
-function TableListItem(props) {
+interface Props {
+    category: string,
+    subCategory: string,
+    brand: string,
+    products: string,
+    cashback: string,
+    checked: boolean,
+    onCheckboxChange: any
+}
 
-    const {category, subCategory, brand, products, cashback, checked, onCheckboxChange } = props;
+const TableListItem: React.FC<Props> = ({category, subCategory, brand, products, cashback, checked, onCheckboxChange }) => {
 
     return(
         <ul className={styles.list__item}>

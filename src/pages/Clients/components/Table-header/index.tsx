@@ -1,6 +1,8 @@
+import React, { FC } from 'react';
+
 import style from'../table-header/style.module.scss'
 
-function TableHeader() {
+const TableHeader: FC = () => {
 
     console.log();
     return(

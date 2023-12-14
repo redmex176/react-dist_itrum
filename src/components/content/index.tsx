@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { FC } from 'react';
+
 import { Route, Routes } from 'react-router-dom';
 
 import Products from '../../pages/Products/components';
 import Clients from '../../pages/Clients/components';
+import Category from '../../pages/Category/components/index';
 
 import styles from '../content/style.module.scss';
 
-function Content() {
+const Content:FC = () => {
     console.log('content');
     
     return (
@@ -14,6 +16,7 @@ function Content() {
             <Routes>
                 <Route path='products' element={<Products/>}/>
                 <Route path='clients' element={<Clients/>}/>
+                <Route path='category' element={<Category/>}/>
             </Routes>
         </div>
     );

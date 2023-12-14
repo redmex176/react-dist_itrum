@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styles from '../search-panel/style.module.scss';
 
 import svg from '../../img/x.svg';

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
@@ -6,11 +6,11 @@ import styles from'../navigation-item/style.module.scss'
 
 interface Props {
   text : string,
-  img: ReactNode,
+  img: React.ReactNode,
   to: string
 }
 
-function NavigationItem( {text, img, to}: Props) {
+const NavigationItem: React.FC<Props> = ( {text, img, to}: Props) => {
   return (
     <>
       <NavLink

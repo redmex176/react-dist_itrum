@@ -1,24 +1,26 @@
+import React, {FC} from 'react';
 import { useEffect, useState } from 'react';
 
-import ProductsBtn from './Products-button/index.jsx';
-import SearchFilter from '../../../components/Search-filter';
-import SearchPanel from '../../../components/Search-panel';
-import TableList from './Table-list/index.jsx';
-import TableHeader from './Table-header/index.jsx';
-import ModalProducts from './Modal/index.jsx';
-import ModalTask from './Modal-task/index.jsx';
+import ProductsBtn from './Products-button/index.tsx';
+import SearchFilter from '../../../components/Search-filter/index.tsx';
+import SearchPanel from '../../../components/Search-panel/index.tsx';
+import TableList from './Table-list/index.tsx';
+import TableHeader from './Table-header/index';
+import ModalProducts from './Modal/index';
+import ModalTask from './Modal-task/index.tsx';
 
 import PRODUCTS_DATA from '../../../constants/products.js';
  
 import styles from '../components/style.module.scss';
 
-function Products() {
+const Products:FC = () => {
 
-    const [productList, setProductsList] = useState(PRODUCTS_DATA);
-    const [pageList, setPageList] = useState(productList);
+    const [productList, setProductsList] = useState<any>(PRODUCTS_DATA);
+    const [pageList, setPageList] = useState<any>(productList);
 
-    let [page, setPage] = useState(10);
-    const [currentPage, setCurrentPage] = useState(1);
+    let [page, setPage] = useState<number>(10);
+    
+    const [currentPage, setCurrentPage] = useState<number>(1);
     const indexOfLastItem = currentPage * page;
     const indexOfFirstItem = indexOfLastItem - page;
     const currentItems = productList.slice(indexOfFirstItem, indexOfLastItem);
@@ -35,7 +37,7 @@ function Products() {
     let [modal, setModal] = useState(false);
 
     useEffect(() => {
-        const closeModalTaskKey = (event) => {
+        const closeModalTaskKey = (event: { keyCode: number; }) => {
           if (event.keyCode === 27) {
             setModalTask(false);
           }
@@ -46,8 +48,8 @@ function Products() {
         };
       }, [modalTask]);
 
-    const handleCheckboxChange = (id) => {
-        const updatedList = productList.map(item => {
+    const handleCheckboxChange = (id: any) => {
+        const updatedList = productList.map((item: { id: number; checked: boolean; }) => {
             if (item.id === id) {
                 return { ...item, checked: !item.checked };
             }
@@ -59,9 +61,9 @@ function Products() {
     };
     
     const handleHeaderCheckboxChange = () => {
-        const allChecked = productList.every(item => item.checked);
+        const allChecked = productList.every((item: { checked: any; }) => item.checked);
     
-        const updatedList = productList.map(item => ({
+        const updatedList = productList.map((item: any) => ({
             ...item,
             checked: !allChecked
         }));
@@ -70,32 +72,33 @@ function Products() {
     };
     
     const onDelete = () => {
-        const updatedList = productList.filter(item => !item.checked);
+        const updatedList = productList.filter((item: { checked: boolean; }) => !item.checked);
         setProductsList(updatedList);
 
         // const newCurrentPage = Math.ceil(updatedList.length / page);
         // setCurrentPage(newCurrentPage > 0 ? newCurrentPage : 1);
     }
 
-    const filterProducts = (e) => {
-        page = e.target.value;
-        setPage(e.target.value);
-        if(e.target.value == 10) {
+    const filterProducts = (e: React.ChangeEvent<HTMLInputElement>) => {
+     
+        setPage(parseInt(e.target.value));
+
+        if(page == 10) {
             setPageList(productList.slice(0, page));
-        } else if(e.target.value == 20) {
+        } else if(page == 20) {
             setPageList(productList.slice(0, page));
-        }else if(e.target.value == 30) {
+        }else if(page == 30) {
             setPageList(productList.slice(0, page));
         }
     }
 
-    const nextPage = (e) => {
+    const nextPage = () => {
         if (indexOfLastItem < productList.length) {
             setCurrentPage(currentPage + 1);
         }
     }
 
-    const prevPage = (e) => {
+    const prevPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
         }
@@ -105,7 +108,7 @@ function Products() {
        return currentPage;
     }
 
-    const addItem = (e) => {
+    const addItem = (e: { preventDefault: () => void; target: { reset: () => void; }; }) => {
         e.preventDefault();
        
         const newItemObject = {
@@ -127,16 +130,16 @@ function Products() {
         e.target.reset();
     }
 
-    const closeModalTask = (e)=> {
+    const closeModalTask = (e: { target: { classList: { contains: (arg0: any) => any; }; }; }) => {
         if(e.target.classList.contains(styles.modal__task)) {
-            setModalTask(modalTask = !modalTask);
+            setModalTask(!modalTask);
         }
     }
 
     return (
         <div className={styles.wrapp}>
             <div className={styles.search__panel}>
-                <SearchPanel />
+                <SearchPanel handleSearch={undefined} handleEmpty={undefined} value={''} />
                 <SearchFilter 
                       filterProducts={filterProducts} 
                       list={productList}  
@@ -148,7 +151,7 @@ function Products() {
                 />
             </div>  
             <ProductsBtn 
-                openModalTask={() => setModalTask(modalTask = !modalTask)}
+                openModalTask={() => setModalTask(!modalTask)}
             />
             <>
                 <TableHeader 
@@ -170,8 +173,7 @@ function Products() {
                 addItem={addItem} 
                 newItem={newItem} 
                 setNewItem={setNewItem} 
-                modalTask={modalTask}
-                setModalTask={setModalTask}/>
+                modalTask={modalTask}/>
         </div>
     );
 }

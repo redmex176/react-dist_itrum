@@ -1,57 +1,56 @@
-import React from 'react';
+import React, { FC } from 'react';
 import {useState} from 'react';
 
 import SearchPanel from '../../../components/Search-panel/index.js';
 import SearchFilter from '../../../components/Search-filter/index.js';
 
 import TableHeader from './Table-header/index.jsx';
-import TableList from './Table-list/index.jsx';
+import TableList from './Table-list/index.tsx';
 
 import CLIENTS_DATA from '../../../constants/clients_request.js';
 
 import styles from '../../Products/components/style.module.scss';
 
-function Clients() {
+const Clients: FC = () => {
     const [productList, setProductsList] = useState(CLIENTS_DATA);
     const [pageList, setPageList] = useState(productList);
 
-    let [page, setPage] = useState(10);
+    let [page, setPage] = useState<number>(10);
 
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState<number>(1);
     const indexOfLastItem = currentPage * page;
     const indexOfFirstItem = indexOfLastItem - page;
     const currentItems = productList.slice(indexOfFirstItem, indexOfLastItem);
-    const [searchValue, setSearchValue] = useState('');
+    const [searchValue, setSearchValue] = useState<string>('');
 
-    const filterProducts = (e) => {
-        page = e.target.value;
-        setPage(e.target.value);
-        if(e.target.value == 10) {
+    const filterProducts = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+        page = parseInt(e.target.value);
+
+        setPage(page);
+        
+        if(page == 10) {
             setPageList(productList.slice(0, page));
-        } else if(e.target.value == 20) {
+        } else if(page == 20) {
             setPageList(productList.slice(0, page));
-        }else if(e.target.value == 30) {
+        }else if(page == 30) {
             setPageList(productList.slice(0, page));
         }
     }
 
-    const nextPage = (e) => {
+    const nextHandlerPage = () => {
         if (indexOfLastItem < productList.length) {
             setCurrentPage(currentPage + 1);
         }
     }
 
-    const prevPage = (e) => {
+    const prevHandlerPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
         }
     }
 
-    const currentPageToggle = () => {
-       return currentPage;
-    }
-
-    const handleSearch = (e) => {
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value.toLowerCase();
         setSearchValue(value);
 
@@ -68,7 +67,7 @@ function Clients() {
         setCurrentPage(1);
     }
 
-    const handleEmpty = (e) => {
+    const handleEmpty = () => {
         setSearchValue('');
         setProductsList(CLIENTS_DATA);
         setCurrentPage(1);
@@ -86,10 +85,10 @@ function Clients() {
                       filterProducts={filterProducts} 
                       list={productList}  
                       page={page}
-                      nextPage={nextPage}
-                      prevPage={prevPage}
+                      nextPage={nextHandlerPage}
+                      prevPage={prevHandlerPage}
                       currentPage={currentPage}
-                      currentPageToggle={currentPageToggle}
+                      currentPageToggle={() => {currentPage}}
                 />
             </div>  
             <>

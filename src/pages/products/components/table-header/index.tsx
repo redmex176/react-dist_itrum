@@ -1,8 +1,12 @@
+import React from 'react';
 import style from'../table-header/style.module.scss'
 
-function TableHeader({handleHeaderCheckboxChange}) {
+interface Props {
+    handleHeaderCheckboxChange: any
+}
 
-    console.log();
+const TableHeader: React.FC<Props> = ({handleHeaderCheckboxChange}) => {
+
     return(
         <ul className={style.table__header}>
             <li>

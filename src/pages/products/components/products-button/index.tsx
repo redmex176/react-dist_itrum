@@ -1,6 +1,12 @@
+import React, {FC} from 'react';
+
 import styles from'../products-button/style.module.scss';
 
-function ProductsBtn({openModalTask}) {
+interface Props {
+    openModalTask: any
+}
+
+const ProductsBtn: React.FC<Props> = ({openModalTask}) => {
 
     return(
         <>

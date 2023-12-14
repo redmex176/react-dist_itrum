@@ -1,9 +1,16 @@
+import React, { FC } from 'react';
 import styles from '../table-list-item/style.module.scss';
 
-function TableListItem(props) {
-    const {email, phone, name, lastName} = props;
-    
-    function formatPhoneNumber(phoneNumber) {
+interface Props {
+  email: string,
+  phone: string,
+  name: string,
+  lastName: string
+};
+
+const TableListItem: React.FC<Props> = ({email, phone, name, lastName}) => {
+
+    function formatPhoneNumber(phoneNumber :string) {
         const cleaned = ('' + phoneNumber).replace(/\D/g, '');
 
         const match = cleaned.match(/^(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})$/);

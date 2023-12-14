@@ -1,7 +1,16 @@
+import React from 'react';
 import { useState } from 'react';
 import styles from'../modal-task/style.module.scss';
 
-function ModalTask ({addItem, newItem, setNewItem, modalTask, closeModalTask}) {
+interface Props {
+    addItem: any,
+    newItem: any,
+    setNewItem: any,
+    modalTask: boolean,
+    closeModalTask: any
+}
+
+const ModalTask: React.FC<Props> = ({addItem, newItem, setNewItem, modalTask, closeModalTask}) => {
     const activeModal = modalTask ? `${styles.show} ${styles.fade}` : styles.hide;
 
     return(

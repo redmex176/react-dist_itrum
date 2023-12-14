@@ -1,8 +1,18 @@
-import React from 'react';
+import React, {FC} from 'react';
+
 import styles from '../search-filter/style.module.scss';
 
+interface Props {
+    filterProducts: any,
+    list: any,
+    page: number,
+    prevPage: any,
+    nextPage: any,
+    currentPage: number,
+    currentPageToggle: any
+}
 
-function SearchFilter({filterProducts, list, page, prevPage, nextPage, currentPage, currentPageToggle}) {
+const SearchFilter: React.FC<Props> = ({filterProducts, list, page, prevPage, nextPage, currentPage, currentPageToggle}) => {
     let count = list.length;
 
     count = Math.ceil((count / page));
