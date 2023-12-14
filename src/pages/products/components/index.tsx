@@ -18,13 +18,16 @@ const Products:FC = () => {
     const [productList, setProductsList] = useState<any>(PRODUCTS_DATA);
     const [pageList, setPageList] = useState<any>(productList);
 
-    let [page, setPage] = useState<number>(10);
+    const [page, setPage] = useState<number>(10);
     
     const [currentPage, setCurrentPage] = useState<number>(1);
     const indexOfLastItem = currentPage * page;
     const indexOfFirstItem = indexOfLastItem - page;
     const currentItems = productList.slice(indexOfFirstItem, indexOfLastItem);
 
+    const [modalTask, setModalTask] = useState(false);
+    const [modal, setModal] = useState(false);
+    
     const [newItem, setNewItem] = useState({
         category: '',
         subCategory: '',
@@ -32,9 +35,6 @@ const Products:FC = () => {
         brand: '',
         cashback: ''
     });
-
-    let [modalTask, setModalTask] = useState(false);
-    let [modal, setModal] = useState(false);
 
     useEffect(() => {
         const closeModalTaskKey = (event: { keyCode: number; }) => {
@@ -55,8 +55,7 @@ const Products:FC = () => {
             }
             return item;
         });
-        modal = false;
-        setModal(modal);
+        setModal(false);
         setProductsList(updatedList);       
     };
     

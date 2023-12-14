@@ -15,7 +15,7 @@ const Clients: FC = () => {
     const [productList, setProductsList] = useState(CLIENTS_DATA);
     const [pageList, setPageList] = useState(productList);
 
-    let [page, setPage] = useState<number>(10);
+    const [page, setPage] = useState<number>(10);
 
     const [currentPage, setCurrentPage] = useState<number>(1);
     const indexOfLastItem = currentPage * page;
@@ -25,9 +25,7 @@ const Clients: FC = () => {
 
     const filterProducts = (e: React.ChangeEvent<HTMLInputElement>) => {
 
-        page = parseInt(e.target.value);
-
-        setPage(page);
+        setPage(parseInt(e.target.value));
         
         if(page == 10) {
             setPageList(productList.slice(0, page));
