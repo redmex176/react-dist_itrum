@@ -18,7 +18,7 @@ function Products() {
     const [productList, setProductsList] = useState(PRODUCTS_DATA);
     const [pageList, setPageList] = useState(productList);
 
-    let [page, setPage] = useState(10);
+    const [page, setPage] = useState(10);
     const [currentPage, setCurrentPage] = useState(1);
     const indexOfLastItem = currentPage * page;
     const indexOfFirstItem = indexOfLastItem - page;
@@ -32,8 +32,8 @@ function Products() {
         cashback: ''
     });
 
-    let [modalTask, setModalTask] = useState(false);
-    let [modal, setModal] = useState(false);
+    const [modalTask, setModalTask] = useState(false);
+    const [modal, setModal] = useState(false);
 
     useEffect(() => {
         const closeModalTaskKey = (event) => {
@@ -54,8 +54,8 @@ function Products() {
             }
             return item;
         });
-        modal = false;
-        setModal(modal);
+     
+        setModal(false);
         setProductsList(updatedList);       
     };
     
@@ -79,13 +79,12 @@ function Products() {
     }
 
     const filterProducts = (e) => {
-        page = e.target.value;
         setPage(e.target.value);
-        if(e.target.value == 10) {
+        if(page == 10) {
             setPageList(productList.slice(0, page));
-        } else if(e.target.value == 20) {
+        } else if(page == 20) {
             setPageList(productList.slice(0, page));
-        }else if(e.target.value == 30) {
+        }else if(page == 30) {
             setPageList(productList.slice(0, page));
         }
     }
@@ -130,7 +129,7 @@ function Products() {
 
     const closeModalTask = (e)=> {
         if(e.target.classList.contains(styles.modal__task)) {
-            setModalTask(modalTask = !modalTask);
+            setModalTask(!modalTask);
         }
     }
 
@@ -149,7 +148,7 @@ function Products() {
                 />
             </div>  
             <ProductsBtn 
-                openModalTask={() => setModalTask(modalTask = !modalTask)}
+                openModalTask={() => setModalTask(!modalTask)}
             />
             <>
                 <TableHeader 
