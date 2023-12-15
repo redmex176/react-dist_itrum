@@ -59,6 +59,7 @@
         align-items: center;
    
         p {
+            font-size: 14px;
             padding-left: 12px;
             max-width: 320px;
             width: 100%;
@@ -79,6 +80,7 @@
             color: $text-main;
             cursor: pointer;
         }
+        
         input:focus {
             border: 0px solid #000;
             outline:none;

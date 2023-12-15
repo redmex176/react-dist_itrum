@@ -1,52 +1,86 @@
 import React, { FC, useState } from "react";
+
 import CategoryItem from "./Category-item";
 import styles from './style.module.scss';
 
 const Category: FC = () => {
-    const [inputValue, setInputValue] = useState("");
-    const [categories, setCategories] = useState<any[]>([]);
+  const [inputAddValue, setInputAddValue] = useState("");
+  const [inputEditValue, setInputEditValue] = useState("");
+  const [categories, setCategories] = useState<any[]>([]);
+  const [isEdit, setIsEdit] = useState(false);
+  const [editedCategoryId, setEditedCategoryId] = useState(null);
 
-    const handleAddCategory = () => {
-        const newCategory = {
-            category: inputValue,
-            id: Date.now(),
-            edit: false
-        };
-
-        setCategories([...categories, newCategory]);
-        setInputValue("");         
+  const handleAddCategory = () => {
+    const newCategory = {
+      category: inputAddValue,
+      id: Date.now(),
+      edit: false
     };
-    console.log(categories);
-    const handleEditCategory = (id: any) => {
-        console.log(id);
-        
-    }
 
-    const handleDeleteCategory = (id: any) => {
-        console.log(id);
-        
-    }
+    setCategories([...categories, newCategory]);
+    setInputAddValue("");         
+  };
 
-    const handleChoseCategory = (id: any) => {
-        console.log(id);
-        
-    }
+  const handleEditCategory = (id) => {
+    setIsEdit(true);
+    setEditedCategoryId(id);
+    const categoryToEdit = categories.find(category => category.id === id);
+    setInputEditValue(categoryToEdit.category);
+  };
 
-    return (
-        <div className={styles.category__wrapp}>
-            <CategoryItem
-                placeholder="Введите название категории"
-                btnText="Добавить категорию"
-                handleAddCategory={handleAddCategory}
-                categories={categories}
-                inputValue={inputValue}
-                setInputValue={setInputValue}
-                handleEditCategory={handleEditCategory}
-                handleDeleteCategory={handleDeleteCategory}
-                handleChoseCategory={handleChoseCategory}
-            />
-        </div>
-    );
+  const handleSaveEdit = (editedText) => {
+    const updatedCategories = categories.map(category => {
+      if (category.id === editedCategoryId) {
+        return { ...category, category: editedText };
+      }
+      return category;
+    });
+
+    setCategories(updatedCategories);
+    setIsEdit(false);
+    
+    setInputEditValue("");
+  };
+
+  const handleCancelEdit = () => {
+    setIsEdit(false);
+    
+    setInputEditValue("");
+  };
+
+  const handleDeleteCategory = (id: any) => {
+    const updatedCategories = categories.filter(category => category.id !== id);
+    setCategories(updatedCategories);
+    setIsEdit(false);  
+    
+  };
+
+  const handleChoseCategory = (id: any) => {
+    console.log(id);
+  };
+
+  return (
+    <div className={styles.category__wrapp}>
+      <CategoryItem
+        placeholder="Введите название категории"
+        btnText="Добавить категорию"
+        handleAddCategory={handleAddCategory}
+        categories={categories}
+        inputAddValue={inputAddValue}
+        setInputAddValue={setInputAddValue}
+        inputEditValue={inputEditValue}
+        setInputEditValue={setInputEditValue}
+        handleEditCategory={handleEditCategory}
+        handleSaveEdit={handleSaveEdit}
+        handleCancelEdit={handleCancelEdit}
+        handleDeleteCategory={handleDeleteCategory}
+        handleChoseCategory={handleChoseCategory}
+        isEdit={isEdit}
+        setIsEdit={setIsEdit}
+        editedCategoryId={editedCategoryId}
+      />
+    </div>
+  );
 };
 
 export default Category;
