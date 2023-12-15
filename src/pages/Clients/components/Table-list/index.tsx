@@ -10,17 +10,14 @@ interface Props {
 
 const TableList: React.FC<Props>= ({ list }) => {
     
-    const elements = list.map((item : any) => (
-        
-        <TableListItem 
-            key={item.name+item.phone}
-            {...item}
-        />
-    ));
-
     return (
         <div className={styles.table__list}>
-            {elements}
+            {list.map((item : any) => (
+                <TableListItem 
+                    key={item.name+item.phone}
+                    {...item}
+                />
+            ))}
         </div>
     );
 }

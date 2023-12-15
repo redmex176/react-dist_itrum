@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from '../search-panel/style.module.scss';
 
-import svg from '../../img/x.svg';
+import CloseSvg from '../../assets/icon/x.svg?react';
 
 interface Props {
     handleSearch: any,
@@ -19,11 +19,10 @@ function SearchPanel({handleSearch, handleEmpty, value}: Props) {
                 placeholder="Поиск"
                 value={value}
              />
-             <img 
-             onClick={handleEmpty}
-             src={svg} 
-             alt="" 
-             className={styles.img}/>
+             <CloseSvg
+                onClick={handleEmpty}
+                className={styles.img}
+             />
         </>
     ); 
 }

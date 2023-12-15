@@ -24,16 +24,8 @@ const Clients: FC = () => {
     const [searchValue, setSearchValue] = useState<string>('');
 
     const filterProducts = (e: React.ChangeEvent<HTMLInputElement>) => {
-
         setPage(parseInt(e.target.value));
-        
-        if(page == 10) {
-            setPageList(productList.slice(0, page));
-        } else if(page == 20) {
-            setPageList(productList.slice(0, page));
-        }else if(page == 30) {
-            setPageList(productList.slice(0, page));
-        }
+        if(page % 10 === 0) return setPageList(productList.slice(0, page));
     }
 
     const nextHandlerPage = () => {

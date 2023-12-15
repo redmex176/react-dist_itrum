@@ -16,6 +16,7 @@ import styles from '../components/style.module.scss';
 const Products:FC = () => {
 
     const [productList, setProductsList] = useState<any>(PRODUCTS_DATA);
+
     const [pageList, setPageList] = useState<any>(productList);
 
     const [page, setPage] = useState<number>(10);
@@ -25,9 +26,6 @@ const Products:FC = () => {
     const indexOfFirstItem = indexOfLastItem - page;
     const currentItems = productList.slice(indexOfFirstItem, indexOfLastItem);
 
-    const [modalTask, setModalTask] = useState(false);
-    const [modal, setModal] = useState(false);
-    
     const [newItem, setNewItem] = useState({
         category: '',
         subCategory: '',
@@ -35,6 +33,9 @@ const Products:FC = () => {
         brand: '',
         cashback: ''
     });
+
+    const [modalTask, setModalTask] = useState(false);
+    const [modal, setModal] = useState(false);
 
     useEffect(() => {
         const closeModalTaskKey = (event: { keyCode: number; }) => {
@@ -74,21 +75,14 @@ const Products:FC = () => {
         const updatedList = productList.filter((item: { checked: boolean; }) => !item.checked);
         setProductsList(updatedList);
 
-        // const newCurrentPage = Math.ceil(updatedList.length / page);
-        // setCurrentPage(newCurrentPage > 0 ? newCurrentPage : 1);
+        const newCurrentPage = Math.ceil(updatedList.length / page);
+        setCurrentPage(newCurrentPage > 0 ? newCurrentPage : 1);
     }
 
     const filterProducts = (e: React.ChangeEvent<HTMLInputElement>) => {
-     
-        setPage(parseInt(e.target.value));
-
-        if(page == 10) {
-            setPageList(productList.slice(0, page));
-        } else if(page == 20) {
-            setPageList(productList.slice(0, page));
-        }else if(page == 30) {
-            setPageList(productList.slice(0, page));
-        }
+        const newPage = +e.target.value;
+        setPage(newPage);
+        if(newPage % 10 === 0) return setPageList(productList.slice(0, page));
     }
 
     const nextPage = () => {

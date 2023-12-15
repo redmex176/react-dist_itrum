@@ -28,7 +28,7 @@ const ModalTask: React.FC<Props> = ({addItem, newItem, setNewItem, modalTask, cl
                                 type="text" 
                                 name="cashback"  
                                 placeholder='20%'
-                                onChange={(e) => setNewItem({ ...newItem, cashback: e.target.value })}
+                                onChange={({target: {value}}) => setNewItem({ ...newItem, cashback: value })}
                             />
                         </li>
                         <li>
@@ -36,7 +36,7 @@ const ModalTask: React.FC<Props> = ({addItem, newItem, setNewItem, modalTask, cl
                             <select 
                                 name="category" 
                                 placeholder="Название категории"
-                                onChange={(e) => setNewItem({ ...newItem, category: e.target.value })}
+                                onChange={({target: {value}}) => setNewItem({ ...newItem, category: value })}
                                 defaultValue="category">
                                <option value="category">Обувь</option>
                                <option value="Кроссовки">Кроссовки</option>
@@ -48,7 +48,7 @@ const ModalTask: React.FC<Props> = ({addItem, newItem, setNewItem, modalTask, cl
                             <select 
                                 name="subCategory" 
                                 placeholder="Название подкатегории"
-                                onChange={(e) => setNewItem({ ...newItem, subCategory: e.target.value })}>
+                                onChange={({target: {value}}) => setNewItem({ ...newItem, subCategory: value })}>
                                <option value="subCategory">Название подкатегории</option>
                                <option value="Название подкатегории1">Название подкатегории1</option>
                                <option value="Название подкатегории2">Название подкатегории2</option>
@@ -59,7 +59,7 @@ const ModalTask: React.FC<Props> = ({addItem, newItem, setNewItem, modalTask, cl
                             <select 
                             name="brand"
                             placeholder="Название подкатегории"
-                            onChange={(e) => setNewItem({ ...newItem, brand: e.target.value })}>
+                            onChange={({target: {value}}) => setNewItem({ ...newItem, brand: value })}>
                                <option value="brand">Имя бренда</option>
                                <option value="Adidas">Adidas</option>
                                <option value="Nike">Nike</option>

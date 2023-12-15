@@ -1,8 +1,8 @@
 import React from "react";
 import styles from './style.module.scss';
 
-import EditSvg from '../../../../img/edit.svg';
-import TrashSvg from '../../../../img/trash.svg';
+import EditSvg from '../../../../assets/icon/edit.svg?react';
+import TrashSvg from '../../../../assets/icon/trash.svg?react';
 
 const CategoryItem = ({
     handleChoseCategory,
@@ -38,8 +38,8 @@ const CategoryItem = ({
         ) : (
           <>
             <p>{item.category}</p>
-            <img onClick={() => handleEditCategory(item.id)} src={EditSvg} alt="" />
-            <img onClick={() => handleDeleteCategory(item.id)} src={TrashSvg} alt="" />
+            <EditSvg onClick={() => handleEditCategory(item.id)}/>
+            <TrashSvg onClick={() => handleDeleteCategory(item.id)}/>
           </>
         )}
       </li>

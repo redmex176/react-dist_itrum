@@ -10,16 +10,16 @@ interface Props {
 
 const TableList = ({ list, onCheckboxChange }) => {
     
-    const elements = list.map((item: { id: any; }) => (
-        <TableListItem 
-            category={""} subCategory={""} brand={""} products={""} cashback={""} checked={false} key={item.id}
-            {...item}
-            onCheckboxChange={() => onCheckboxChange(item.id)}        />
-    ));
+   
 
     return (
         <div className={styles.table__list}>
-            {elements}
+            {list.map((item: { id: any; }) => (
+                <TableListItem 
+                    category={""} subCategory={""} brand={""} products={""} cashback={""} checked={false} key={item.id}
+                    {...item}
+                    onCheckboxChange={() => onCheckboxChange(item.id)}/>
+                ))}
         </div>
     );
 }
