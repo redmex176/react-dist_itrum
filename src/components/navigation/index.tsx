@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import NavigationItem from '../Navigation-item/index.tsx';
+import NavigationItem from '../Navigation-item/';
 
 import Products from '../../assets/icon/products.svg?react';
 import Users from '../../assets/icon/users.svg?react';

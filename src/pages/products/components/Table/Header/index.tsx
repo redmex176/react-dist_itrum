@@ -1,8 +1,8 @@
 import React from 'react';
-import style from'../table-header/style.module.scss'
+import style from'./style.module.scss'
 
 interface Props {
-    handleHeaderCheckboxChange: any
+    handleHeaderCheckboxChange: () => void;
 }
 
 const TableHeader: React.FC<Props> = ({handleHeaderCheckboxChange}) => {

@@ -5,4 +5,14 @@
     width: 100%;
     height: 848px;
     padding: 1.5rem 1.5rem 0rem 1.5rem;
+
+    svg {
+        width: 17px;
+        height: 16px;
+    }
+
+    p, svg {
+        margin: auto auto auto 3.5%;
+    }
+
 }

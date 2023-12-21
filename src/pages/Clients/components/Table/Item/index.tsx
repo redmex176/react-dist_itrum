@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import styles from '../table-list-item/style.module.scss';
+import React from 'react';
+import styles from './style.module.scss';
 
 interface Props {
   email: string,

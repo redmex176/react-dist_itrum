@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
@@ -12,13 +12,11 @@ interface Props {
 
 const NavigationItem: React.FC<Props> = ( {text, img, to}: Props) => {
   return (
-    <>
       <NavLink
         className={styles.nav__item} to={to}>
             {img}
             <p>{text}</p>
       </NavLink>
-    </>
   );
 }
 

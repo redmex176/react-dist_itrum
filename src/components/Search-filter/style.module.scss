@@ -6,17 +6,6 @@
     max-width: 959px;
     height: 32px;
     align-self: end;
-    &::after {
-        content: "";
-        position: relative;
-        display: block;
-        z-index: 100;
-        width: 16px;
-        height: 16px;
-        top: -60px;
-        left: -290px;
-        background-image: url('../../assets/icon/search.svg');    
-    }
    
     input {
         width: 28px;

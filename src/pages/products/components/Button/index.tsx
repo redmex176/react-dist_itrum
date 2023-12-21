@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 
-import styles from'../products-button/style.module.scss';
+import styles from'./style.module.scss';
 
 interface Props {
     openModalTask: any

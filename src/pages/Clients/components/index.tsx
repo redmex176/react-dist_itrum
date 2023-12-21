@@ -1,20 +1,26 @@
 import React, { FC } from 'react';
 import {useState} from 'react';
 
-import SearchPanel from '../../../components/Search-panel/index.js';
-import SearchFilter from '../../../components/Search-filter/index.js';
+import SearchPanel from '../../../components/Search-panel/';
+import SearchFilter from '../../../components/Search-filter/';
 
-import TableHeader from './Table-header/index.jsx';
-import TableList from './Table-list/index.tsx';
+import TableHeader from './Table/Header';
+import TableList from './Table/List';
 
 import CLIENTS_DATA from '../../../constants/clients_request.js';
 
 import styles from '../../Products/components/style.module.scss';
 
-const Clients: FC = () => {
-    const [productList, setProductsList] = useState(CLIENTS_DATA);
-    const [pageList, setPageList] = useState(productList);
+interface Client {
+    name: string;
+    phone: string;
+    lastName: string | null;
+    email: string | null;
+  }
 
+const Clients: FC = () => {
+    const [productList, setProductsList] = useState<Client[]>(CLIENTS_DATA);
+    
     const [page, setPage] = useState<number>(10);
 
     const [currentPage, setCurrentPage] = useState<number>(1);
@@ -23,9 +29,8 @@ const Clients: FC = () => {
     const currentItems = productList.slice(indexOfFirstItem, indexOfLastItem);
     const [searchValue, setSearchValue] = useState<string>('');
 
-    const filterProducts = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const filterProducts = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setPage(parseInt(e.target.value));
-        if(page % 10 === 0) return setPageList(productList.slice(0, page));
     }
 
     const nextHandlerPage = () => {

@@ -24,4 +24,11 @@ span, select, input {
     justify-content: flex-end;
     max-width: 959px;
     gap: 24px;
+    svg:nth-child(2) {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        right: 315px;
+        top: 35px;
+   }
 }

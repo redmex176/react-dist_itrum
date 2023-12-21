@@ -1,27 +1,35 @@
 import React, {FC} from 'react';
 import { useEffect, useState } from 'react';
 
-import ProductsBtn from './Products-button/index.tsx';
-import SearchFilter from '../../../components/Search-filter/index.tsx';
-import SearchPanel from '../../../components/Search-panel/index.tsx';
-import TableList from './Table-list/index.tsx';
-import TableHeader from './Table-header/index';
-import ModalProducts from './Modal/index';
-import ModalTask from './Modal-task/index.tsx';
+import ProductsBtn from './Button';
+import SearchFilter from '../../../components/Search-filter/';
+import TableList from './Table/List';
+import TableHeader from './Table/Header';
+import ModalProducts from './Modals/Modal-delete-item/';
+import ModalTask from './Modals/Modal-add-item/';
 
 import PRODUCTS_DATA from '../../../constants/products.js';
  
 import styles from '../components/style.module.scss';
 
+interface Product {
+    category: string;
+    subCategory: string;
+    brand: string;
+    products: string;
+    cashback: number ;
+    id: number;
+    checked: boolean;
+  }
+
 const Products:FC = () => {
 
-    const [productList, setProductsList] = useState<any>(PRODUCTS_DATA);
-
-    const [pageList, setPageList] = useState<any>(productList);
+    const [productList, setProductsList] = useState<Product[]>(PRODUCTS_DATA);
 
     const [page, setPage] = useState<number>(10);
     
     const [currentPage, setCurrentPage] = useState<number>(1);
+    
     const indexOfLastItem = currentPage * page;
     const indexOfFirstItem = indexOfLastItem - page;
     const currentItems = productList.slice(indexOfFirstItem, indexOfLastItem);
@@ -38,8 +46,8 @@ const Products:FC = () => {
     const [modal, setModal] = useState(false);
 
     useEffect(() => {
-        const closeModalTaskKey = (event: { keyCode: number; }) => {
-          if (event.keyCode === 27) {
+        const closeModalTaskKey = (e: { keyCode: number; }) => {
+          if (e.keyCode === 27) {
             setModalTask(false);
           }
         };
@@ -50,7 +58,7 @@ const Products:FC = () => {
       }, [modalTask]);
 
     const handleCheckboxChange = (id: any) => {
-        const updatedList = productList.map((item: { id: number; checked: boolean; }) => {
+        const updatedList = productList.map((item: any) => {
             if (item.id === id) {
                 return { ...item, checked: !item.checked };
             }
@@ -82,7 +90,6 @@ const Products:FC = () => {
     const filterProducts = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newPage = +e.target.value;
         setPage(newPage);
-        if(newPage % 10 === 0) return setPageList(productList.slice(0, page));
     }
 
     const nextPage = () => {
@@ -109,7 +116,7 @@ const Products:FC = () => {
             subCategory: newItem.subCategory,
             brand: newItem.brand,
             products: newItem.products,
-            cashback: newItem.cashback,
+            cashback: +newItem.cashback,
             id: productList.length, 
             checked: false
         };
@@ -132,7 +139,7 @@ const Products:FC = () => {
     return (
         <div className={styles.wrapp}>
             <div className={styles.search__panel}>
-                <SearchPanel handleSearch={undefined} handleEmpty={undefined} value={''} />
+                
                 <SearchFilter 
                       filterProducts={filterProducts} 
                       list={productList}  

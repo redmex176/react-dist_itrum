@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import style from'../table-header/style.module.scss'
+import style from'./style.module.scss'
 
 const TableHeader: FC = () => {
 

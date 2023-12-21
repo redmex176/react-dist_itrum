@@ -1,16 +1,16 @@
-import React, {FC} from 'react';
+import React from 'react';
 
 import styles from '../search-filter/style.module.scss';
 
 interface Props {
-    filterProducts: any,
-    list: any,
-    page: number,
-    prevPage: any,
-    nextPage: any,
-    currentPage: number,
-    currentPageToggle: any
-}
+    filterProducts: (e: any) => void;
+    list: any[]; 
+    page: number;
+    prevPage: () => void;
+    nextPage: () => void;
+    currentPage: number;
+    currentPageToggle: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  }
 
 const SearchFilter: React.FC<Props> = ({filterProducts, list, page, prevPage, nextPage, currentPage, currentPageToggle}) => {
     let count = list.length;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import styles from'../modal-task/style.module.scss';
+import styles from'./style.module.scss';
 
 interface Props {
     addItem: any,
