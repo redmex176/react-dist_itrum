@@ -1,34 +1,30 @@
-import React from 'react';
+import React from "react";
 
-import styles from '../search-panel/style.module.scss';
+import styles from "../search-panel/style.module.scss";
 
-import CloseSvg from '../../assets/icon/x.svg?react';
-import SearchSvg from '../../assets/icon/search.svg?react';
+import CloseSvg from "../../assets/icon/x.svg?react";
+import SearchSvg from "../../assets/icon/search.svg?react";
 
-interface Props {
+interface SearchPanelProps {
     handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleEmpty: () => void;
     value: string;
-  }
+}
 
-function SearchPanel({handleSearch, handleEmpty, value}: Props) {
-    return(
+function SearchPanel({ handleSearch, handleEmpty, value }: SearchPanelProps) {
+    return (
         <>
-            
-            <input onChange={handleSearch}
+            <input
+                onChange={handleSearch}
                 className={styles.search}
-                type="text" 
+                type="text"
                 placeholder="Поиск"
                 value={value}
-             />
-             <SearchSvg/>
-             <CloseSvg
-                onClick={handleEmpty}
-                className={styles.img}
-             />
+            />
+            <SearchSvg />
+            <CloseSvg onClick={handleEmpty} className={styles.img} />
         </>
-    ); 
+    );
 }
 
 export default SearchPanel;
-

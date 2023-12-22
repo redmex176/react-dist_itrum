@@ -1,23 +1,22 @@
-import React from 'react';
+import React from "react";
 
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
-import styles from'../navigation-item/style.module.scss'
+import styles from "../navigation-item/style.module.scss";
 
 interface Props {
-  text : string,
-  img: React.ReactNode,
-  to: string
+    text: string;
+    ico: React.ReactNode;
+    to: string;
 }
 
-const NavigationItem: React.FC<Props> = ( {text, img, to}: Props) => {
-  return (
-      <NavLink
-        className={styles.nav__item} to={to}>
-            {img}
+const NavigationItem: React.FC<Props> = ({ text, ico, to }: Props) => {
+    return (
+        <NavLink className={styles.nav__item} to={to}>
+            {ico}
             <p>{text}</p>
-      </NavLink>
-  );
-}
+        </NavLink>
+    );
+};
 
 export default NavigationItem;

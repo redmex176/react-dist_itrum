@@ -1,23 +1,19 @@
-import React, {FC} from 'react';
+import React from "react";
 
-import styles from'./style.module.scss';
+import styles from "./style.module.scss";
 
-interface Props {
-    openModalTask: any
+interface ProductsBtnProps {
+    openModalTask: any;
 }
 
-const ProductsBtn: React.FC<Props> = ({openModalTask}) => {
-
-    return(
+const ProductsBtn: React.FC<ProductsBtnProps> = ({ openModalTask }) => {
+    return (
         <>
             <button onClick={openModalTask} className={styles.products__btn}>
-                <span>
-                    Добавить акцию
-                </span>
+                <span>Добавить акцию</span>
             </button>
         </>
     );
-    
-}
+};
 
 export default ProductsBtn;
