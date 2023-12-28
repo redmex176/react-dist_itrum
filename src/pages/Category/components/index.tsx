@@ -1,7 +1,13 @@
 import React, { FC, useState } from "react";
 import CategoryItem from "./Category-item";
+
+import { addCategory, setActiveCategory, addSubCategory, deleteCategory, deleteSubCategory, editCategory, editSubCategory } from "../../../redux/actions";
+
+
+
 import ArrowSvg from "../../../assets/icon/arrow.svg?react";
 import styles from "./style.module.scss";
+import { useDispatch, useSelector } from "react-redux";
 
 type SubCategory = { subCategory: string; id: number };
 
@@ -15,9 +21,14 @@ interface Category {
 interface CategoryProps {}
 
 const Category: FC<CategoryProps> = () => {
+
+    const categories = useSelector((state: Category[]) => state);
+    const dispatch = useDispatch();
+console.log(categories);
+
     const [inputAddValue, setInputAddValue] = useState("");
     const [inputSubAddValue, setInputSubAddValue] = useState("");
-    const [categories, setCategories] = useState<Category[]>([]);
+    // const [categories, setCategories] = useState<Category[]>([]);
     const [activeCategoryId, setActiveCategoryId] = useState(0);
     const [isEdit, setIsEdit] = useState(false);
     const [editedCategoryId, setEditedCategoryId] = useState(0);
@@ -29,60 +40,34 @@ const Category: FC<CategoryProps> = () => {
 
     const handleAddCategory = () => {
         if (inputAddValue.trim() !== "") {
-            const newCategory: Category = {
-                category: inputAddValue,
-                id: Date.now(),
-                isActive: false,
-                subCategories: [],
-            };
+          const newCategory: Category = {
+            category: inputAddValue,
+            id: Date.now(),
+            isActive: false,
+            subCategories: [],
+          };
 
-            setCategories([...categories, newCategory]);
-            setInputAddValue("");
+          dispatch(addCategory(newCategory));
+          setInputAddValue("");
         }
-    };
+      };
 
-    const handleAddSubCategory = () => {
+      const handleAddSubCategory = () => {
         if (inputSubAddValue.trim() !== "") {
-            if (activeCategoryId !== 0) {
-                const updatedCategories = categories.map((category) => {
-                    if (category.id === activeCategoryId) {
-                        return {
-                            ...category,
-                            subCategories: [
-                                ...category.subCategories,
-                                {
-                                    subCategory: inputSubAddValue,
-                                    id: Date.now(),
-                                },
-                            ],
-                        };
-                    }
-                    return category;
-                });
-
-                setCategories(updatedCategories);
-                setInputSubAddValue("");
-            }
+          if (activeCategoryId !== 0) {
+            dispatch(addSubCategory(activeCategoryId, { subCategory: inputSubAddValue, id: Date.now() }));
+            setInputSubAddValue("");
+          }
         }
-    };
+      };
 
-    const handleItemClick = (id: number) => {
-        const updatedCategories = categories.map((category) => ({
-            ...category,
-            isActive: category.id === id,
-        }));
+      const handleItemClick = (id: number) => {
+        dispatch(setActiveCategory(id));
+      };
 
-        setCategories(updatedCategories);
-        setActiveCategoryId(id);
-    };
-
-    const handleDeleteCategory = (id: number) => {
-        const newCategories = categories.filter(
-            (category) => category.id !== id
-        );
-        setCategories(newCategories);
-        setActiveCategoryId(0);
-    };
+      const handleDeleteCategory = (id: number) => {
+        dispatch(deleteCategory(id));
+      };
 
     const handleDeleteSubCategory = (subCategoryId: number) => {
         const updatedCategories = categories.map((category) => {

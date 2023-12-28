@@ -1,0 +1,41 @@
+@import '../../../../style/theme.scss';
+
+.menu__wrapp {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    gap: 8px;
+    input:nth-child(3):focus {
+        outline:none;
+    }
+    input,button {
+        width: 314px;
+        height: 40px;
+        border-radius: 8px;
+        border: 0px solid #000;
+    }
+    button{
+        background-color: $btn-bgc-border;
+        color: $active-nav;
+    }
+    input {
+        padding: 10px 12px 10px 12px;
+        border: 1px solid $gray-border;
+        z-index: 0;
+    }
+    label {
+        cursor: pointer;
+        z-index: 1;
+        position: absolute;
+        left: 560px;
+        top: 10px;
+        background-image: url('../../../../assets/icon/paperClip.svg');
+        width: 16px;
+        height: 16px;
+        input:nth-child(1) {
+            display: none;
+        }
+    }
+    
+}
