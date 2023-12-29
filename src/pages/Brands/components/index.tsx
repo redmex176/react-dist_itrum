@@ -1,6 +1,9 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import Menu from "./Menu";
 import MenuList from "./List";
+
+import {useAppSelector, useAppDispatch} from '../../../redux/hooks/hooks';
+import {addBrand, editBrand, deleteBrand} from "../../../redux/actionsBrands";
 
 import styles from "./style.module.scss";
 import ListItem from "./Item";
@@ -8,43 +11,39 @@ import Modal from "./Modal";
 
 interface Brands {
     brand: string,
-    img: string,
+    img: FileList | null,
     id: number
 }
 
 const Brands = () => {
-    const [brandsData, setBrandsData] = useState<Brands[]>([]);
+    const brandsData = useAppSelector((state) => state.brands);
+    const dispatch = useAppDispatch();
+
     const [inputValue, setInputValue] = useState("");
     const [inputEditValue, setInputEditValue] = useState("");
     const [isActive, setIsActive] = useState(false);
     const [isEdit, setIsEdit] = useState(false);
-    const [activeItemId, setActiveItemId] = useState<number | null>(null);
-    const [valueImg, setValueImg] = useState("");
-
-    console.log(brandsData);
+    const [activeItemId, setActiveItemId] = useState(0);
+    const [valueImg, setValueImg] = useState<any>("");
+    const [titleImg, setTitleImg] = useState('');
     
     const handleAddItem = () => {
         if(inputValue.trim() !== "") {
-            const newBrands: Brands = {
-                brand: inputValue,
-                img: valueImg,
-                id: Date.now()
-            }
-            setBrandsData([...brandsData, newBrands]);
+            dispatch(addBrand(inputValue, valueImg, Date.now()));
             setInputValue('');
             setValueImg('');
+            setTitleImg('');
         }
-       
     }
 
     const handleEditItem = (id: number, newBrand: string) => {
-        if(inputEditValue.trim() !== '') {
-            const updatedBrands = brandsData.map((brand) =>
-            brand.id === id ? { ...brand, brand: newBrand, img: valueImg } : brand
-          );
-          setBrandsData(updatedBrands);
-          setValueImg("");
+        if (inputEditValue.trim() !== '' ) {
+            dispatch(editBrand(id, newBrand, valueImg));
+          setInputEditValue('');
+          setValueImg('');
+          setTitleImg('')
         }
+        
       };
     
       const handleOpenModal = () => {
@@ -57,26 +56,29 @@ const Brands = () => {
 
       const handleDeleteItem = () => {
         setIsActive(false);
-        const updatedBrands = brandsData.filter((brand) => brand.id !== activeItemId);
-        setBrandsData(updatedBrands);
-        setActiveItemId(null);
+        dispatch(deleteBrand(activeItemId));
+        setActiveItemId(0);
       };
 
-    const handeImgClick = (e: ChangeEvent<HTMLInputElement>) => {
-        setValueImg(e.target.value.replace(/C:\\fakepath\\/g, ''))  
+    const handeImgClick = (e:any) => {
+        setValueImg(e.target.files[0]);
+      
+        const newValue = e.target.files[0].name;
+        setTitleImg(newValue);
     }
 
     return (
         <div className={styles.brands__wrapp}>
             <Menu
                 handeImgClick={handeImgClick}
-                valueImg= {valueImg}
+                titleImg = {titleImg}
                 inputValue={inputValue}
                 setInputValue={setInputValue}
                 handleAddItem={handleAddItem}
             />
             <MenuList/>
             <ListItem
+            valueImg = {valueImg}
                 isEdit = {isEdit}
                 setIsEdit={setIsEdit}
                 brandsData={brandsData}

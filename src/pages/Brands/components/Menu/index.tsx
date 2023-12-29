@@ -6,10 +6,11 @@ interface MenuProps{
     inputValue: string,
     setInputValue: (value: string) => void;
     handeImgClick: (e: ChangeEvent<HTMLInputElement>) => void;
-    valueImg: string;
+    titleImg: any;
 }
 
-const Menu: React.FC<MenuProps> = ({handleAddItem, inputValue, setInputValue, handeImgClick, valueImg}) => {
+const Menu: React.FC<MenuProps> = ({handleAddItem, inputValue, setInputValue, handeImgClick, titleImg}) => {
+
     return (
         <div className={styles.menu__wrapp}>
             <input 
@@ -25,7 +26,7 @@ const Menu: React.FC<MenuProps> = ({handleAddItem, inputValue, setInputValue, ha
             <label htmlFor="file-input">
                <input onChange={handeImgClick} id="file-input" type="file" name="file"/>
             </label> 
-            <input type="" value={valueImg} readOnly placeholder='Загрузите логотип бренда'/>
+            <input type="" value={titleImg} readOnly placeholder='Загрузите логотип бренда'/>
             <button onClick={handleAddItem}>Добавить бренд</button>
         </div>
     );

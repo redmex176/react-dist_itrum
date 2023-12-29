@@ -9,6 +9,19 @@
     input:nth-child(3):focus {
         outline:none;
     }
+    label::after {
+        content: "Размер логотипа 500x500 px PNG, JPG, JPEG";
+        position: absolute;
+        top: 30px;
+        left: -250px;
+        width: 270px;
+        height: 20px;
+        color:#737680;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        cursor: auto;
+    }
     input,button {
         width: 314px;
         height: 40px;
@@ -28,8 +41,8 @@
         cursor: pointer;
         z-index: 1;
         position: absolute;
-        left: 560px;
-        top: 10px;
+        left: 570px;
+        top: 13px;
         background-image: url('../../../../assets/icon/paperClip.svg');
         width: 16px;
         height: 16px;
@@ -37,5 +50,13 @@
             display: none;
         }
     }
-    
+  
 }
+// .menu__wrapp::after {
+//     content: "Размер логотипа 500x500 px PNG, JPG, JPEG";
+//     position: absolute;
+//     top: 0px;
+//     left: 0px;
+//     width: 100px;
+//     height: 20px;
+// }

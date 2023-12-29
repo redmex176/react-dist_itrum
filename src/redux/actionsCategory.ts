@@ -9,7 +9,7 @@ import {
     EditCategoryAction,
     EditSubCategoryAction,
     SetActiveCategoryAction,
-  } from "./types";
+  } from "./typesCategory";
   
   export const addCategory = (category: Category): AddCategoryAction => ({
     type: ActionType.ADD_CATEGORY,

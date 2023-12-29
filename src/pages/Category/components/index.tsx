@@ -1,13 +1,12 @@
 import React, { FC, useState } from "react";
 import CategoryItem from "./Category-item";
 
-import { addCategory, setActiveCategory, addSubCategory, deleteCategory, deleteSubCategory, editCategory, editSubCategory } from "../../../redux/actions";
+import { addCategory, setActiveCategory, addSubCategory, deleteCategory, deleteSubCategory, editCategory, editSubCategory } from "../../../redux/actionsCategory";
 
-
+import {useAppSelector, useAppDispatch} from '../../../redux/hooks/hooks'
 
 import ArrowSvg from "../../../assets/icon/arrow.svg?react";
 import styles from "./style.module.scss";
-import { useDispatch, useSelector } from "react-redux";
 
 type SubCategory = { subCategory: string; id: number };
 
@@ -22,22 +21,20 @@ interface CategoryProps {}
 
 const Category: FC<CategoryProps> = () => {
 
-    const categories = useSelector((state: Category[]) => state);
-    const dispatch = useDispatch();
-console.log(categories);
+    const categories = useAppSelector((state) => state.categories);
+    const dispatch = useAppDispatch();
 
     const [inputAddValue, setInputAddValue] = useState("");
     const [inputSubAddValue, setInputSubAddValue] = useState("");
-    // const [categories, setCategories] = useState<Category[]>([]);
+
     const [activeCategoryId, setActiveCategoryId] = useState(0);
     const [isEdit, setIsEdit] = useState(false);
     const [editedCategoryId, setEditedCategoryId] = useState(0);
     const [inputEditValue, setInputEditValue] = useState("");
-    const [inputSubCategoryEditValue, setInputSubCategoryEditValue] =
-        useState("");
+    const [inputSubCategoryEditValue, setInputSubCategoryEditValue] = useState("");
     const [isSubCategoryEdit, setIsSubCategoryEdit] = useState(false);
     const [editedSubCategoryId, setEditedSubCategoryId] = useState(0);
-
+   
     const handleAddCategory = () => {
         if (inputAddValue.trim() !== "") {
           const newCategory: Category = {
@@ -49,6 +46,7 @@ console.log(categories);
 
           dispatch(addCategory(newCategory));
           setInputAddValue("");
+          setActiveCategoryId(0);
         }
       };
 
@@ -63,28 +61,17 @@ console.log(categories);
 
       const handleItemClick = (id: number) => {
         dispatch(setActiveCategory(id));
+        setActiveCategoryId(id);
       };
 
       const handleDeleteCategory = (id: number) => {
-        dispatch(deleteCategory(id));
+
+            dispatch(deleteCategory(id));
       };
 
-    const handleDeleteSubCategory = (subCategoryId: number) => {
-        const updatedCategories = categories.map((category) => {
-            if (category.subCategories) {
-                return {
-                    ...category,
-                    subCategories: category.subCategories.filter(
-                        (subCategory: { id: number }) =>
-                            subCategory.id !== subCategoryId
-                    ),
-                };
-            }
-            return category;
-        });
-
-        setCategories(updatedCategories);
-    };
+      const handleDeleteSubCategory = (subCategoryId: number) => {
+        dispatch(deleteSubCategory(activeCategoryId, subCategoryId));
+      };
 
     const handleEditCategory = (id: number) => {
         setIsEdit(true);
@@ -97,17 +84,10 @@ console.log(categories);
 
     const handleSaveEdit = (editedText: string) => {
         if (inputEditValue.trim() !== "") {
-            const newCategories = categories.map((category) => {
-                if (category.id === editedCategoryId) {
-                    return { ...category, category: editedText };
-                }
-                return category;
-            });
-
-            setCategories(newCategories);
-            setIsEdit(false);
+          dispatch(editCategory(editedCategoryId, editedText));
+          setIsEdit(false);
         }
-    };
+      };
 
     const handleCancelEdit = () => {
         setIsEdit(false);
@@ -123,31 +103,11 @@ console.log(categories);
 
     const handleSaveSubCategoryEdit = (editedText: string) => {
         if (inputSubCategoryEditValue.trim() !== "") {
-            const updatedCategories = categories.map((category) => {
-                if (category.id === activeCategoryId) {
-                    return {
-                        ...category,
-                        subCategories: category.subCategories.map(
-                            (subCategory) => {
-                                if (subCategory.id === editedSubCategoryId) {
-                                    return {
-                                        ...subCategory,
-                                        subCategory: editedText,
-                                    };
-                                }
-                                return subCategory;
-                            }
-                        ),
-                    };
-                }
-                return category;
-            });
-
-            setCategories(updatedCategories);
-            setIsSubCategoryEdit(false);
-            setInputSubCategoryEditValue("");
+          dispatch(editSubCategory(activeCategoryId, editedSubCategoryId, editedText));
+          setIsSubCategoryEdit(false);
+          setInputSubCategoryEditValue("");
         }
-    };
+      };
 
     const handleCancelSubCategoryEdit = () => {
         setIsSubCategoryEdit(false);

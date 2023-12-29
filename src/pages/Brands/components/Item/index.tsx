@@ -8,7 +8,7 @@ import CloseSvg from '../../../../assets/icon/close.svg?react';
 
 interface Brands {
   brand: string;
-  img: string;
+  img: Blob | MediaSource;
   id: number;
 }
 
@@ -21,7 +21,8 @@ interface ListItemProps {
   isEdit: boolean;
   setIsEdit: (el: boolean) => void;
   activeItemId: number | null;
-  setActiveItemId: (el: number | null) => void;
+  setActiveItemId: (el: number) => void;
+  setValueImg: (el: any) => void;
 }
 
 const ListItem: React.FC<ListItemProps> = ({
@@ -34,12 +35,15 @@ const ListItem: React.FC<ListItemProps> = ({
   setIsEdit,
   activeItemId,
   setActiveItemId,
+
 }) => {
   
   const handleEditClick = (id: number, brand: string) => {
+    
     setIsEdit(true);
     setActiveItemId(id);
     setInputEditValue(brand);
+
   };
 
   const handleSaveClick = (id: number) => {
@@ -52,14 +56,21 @@ const ListItem: React.FC<ListItemProps> = ({
     setInputEditValue("");
   };
 
+
   const elements = brandsData.map((item) => (
+    
     <li
     onClick={() => {
         setActiveItemId(item.id);
         setInputEditValue(item.brand)} }
     key={item.id}>
       <div className={isEdit && activeItemId === item.id ? `${styles.img__active} ${styles.img__brands}` : styles.img__brands}>
-        <ImgDefault />
+        {/* <ImgDefault /> */}
+        {item.img ? (
+            <img  src={URL.createObjectURL(item.img)}/>
+        ) : (
+            <ImgDefault/>
+        )}
       </div>
       <label className={isEdit && activeItemId === item.id ? '' : styles.hide} htmlFor="file-input">
             <input id="file-input" type="file" name="file"/>

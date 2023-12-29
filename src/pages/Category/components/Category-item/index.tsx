@@ -8,7 +8,7 @@ import TrashSvg from "../../../../assets/icon/trash.svg?react";
 
 interface CategoryItemProps {
     categories: any;
-    handleDeleteCategory: (id: number) => void;
+    handleDeleteCategory: (id: number, subId: number) => void;
     handleEditCategory: (id: number) => void;
     handleSaveEdit: (value: string) => void;
     placeholder: string;
@@ -113,7 +113,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
                                 : handleEditCategory(item.id)
                         }
                     />
-                    <TrashSvg onClick={() => handleDeleteCategory(item.id)} />
+                    <TrashSvg onClick={() => handleDeleteCategory(item.id, item.id)} />
                 </>
             )}
         </li>
