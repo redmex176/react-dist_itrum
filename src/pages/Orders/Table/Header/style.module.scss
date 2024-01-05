@@ -1,0 +1,28 @@
+@import '../../../../style/theme.scss';
+
+.table__header {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    border-top: 1px solid $gray-border;
+    border-bottom: 1px solid $gray-border;
+    background-color: $gray-space;
+    span {
+        color: $gray-span;
+    }
+    li {
+        padding: 0.625rem 0.5rem 0.625rem 0.5rem;
+    }
+    li:nth-child(1) {
+        width: 100%;
+        max-width: 320px;
+    }
+    li:nth-child(2) {
+        width: 100%;
+        max-width: 320px;
+    }
+    li:nth-child(3) {
+        width: 100%;
+        max-width: 320px;
+    }
+}
