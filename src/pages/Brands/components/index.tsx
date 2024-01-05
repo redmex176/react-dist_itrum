@@ -66,7 +66,8 @@ const Brands = () => {
         const newValue = e.target.files[0].name;
         setTitleImg(newValue);
     }
-
+    console.log(brandsData);
+    
     return (
         <div className={styles.brands__wrapp}>
             <Menu
@@ -77,8 +78,8 @@ const Brands = () => {
                 handleAddItem={handleAddItem}
             />
             <MenuList/>
-            <ListItem
-            valueImg = {valueImg}
+            {brandsData.length > 0 ? 
+                <ListItem
                 isEdit = {isEdit}
                 setIsEdit={setIsEdit}
                 brandsData={brandsData}
@@ -88,8 +89,11 @@ const Brands = () => {
                 setInputEditValue={setInputEditValue}
                 activeItemId = {activeItemId}
                 setActiveItemId = {setActiveItemId}
-            />
-            {isActive ?   
+             /> 
+             :
+             <p>Здесь пока нет брендов</p>
+            }
+            {isActive ?  
             <Modal
                 inputEditValue={inputEditValue}
                 isActive={isActive}

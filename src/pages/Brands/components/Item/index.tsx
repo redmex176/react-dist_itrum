@@ -22,7 +22,6 @@ interface ListItemProps {
   setIsEdit: (el: boolean) => void;
   activeItemId: number | null;
   setActiveItemId: (el: number) => void;
-  setValueImg: (el: any) => void;
 }
 
 const ListItem: React.FC<ListItemProps> = ({
@@ -35,7 +34,6 @@ const ListItem: React.FC<ListItemProps> = ({
   setIsEdit,
   activeItemId,
   setActiveItemId,
-
 }) => {
   
   const handleEditClick = (id: number, brand: string) => {
