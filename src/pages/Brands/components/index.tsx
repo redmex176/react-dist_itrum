@@ -66,8 +66,7 @@ const Brands = () => {
         const newValue = e.target.files[0].name;
         setTitleImg(newValue);
     }
-    console.log(brandsData);
-    
+
     return (
         <div className={styles.brands__wrapp}>
             <Menu

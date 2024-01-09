@@ -1,4 +1,3 @@
-// reducer.ts
 
 import { BrandsActionTypes, ADD_BRAND, EDIT_BRAND, DELETE_BRAND } from './actionsBrands';
 

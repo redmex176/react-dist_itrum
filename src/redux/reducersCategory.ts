@@ -1,4 +1,4 @@
-// reducers.ts
+
 import { Category, Action, ActionType } from "./typesCategory";
 
 const initialState: Category[] = [];

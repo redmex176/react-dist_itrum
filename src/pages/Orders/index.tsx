@@ -7,37 +7,36 @@ import SearchFilter from '../../components/Search-filter/';
 import TableHeader from './Table/Header';
 import TableList from './Table/List';
 
-import CLIENTS_DATA from '../../constants/clients_request.js';
-import ORDERS_DATA from '../../constants/orders_request.js';
+import {useAppSelector} from '../../redux/hooks/hooks';
 
 import styles from '../../pages/Products/components/style.module.scss';
 
-interface Client {
-    name: string;
-    phone: string;
-    lastName: string | null;
-    email: string | null;
-  }
+import { Orders } from '../../types/orders';
+import ModalOrders from './Modal';
 
 const Orders: FC = () => {
-    const [productList, setProductsList] = useState<Client[]>(CLIENTS_DATA);
-    
-    const [page, setPage] = useState<number>(10);
 
-    const [currentPage, setCurrentPage] = useState<number>(1);
+    const ordersData = useAppSelector((state) => state.orders.data);
+    // const dispatch = useAppDispatch();
+
+    console.log(ordersData);
+    
+    const [ordersList, setOrdersList] = useState<Orders[]>(ordersData);
+    const [modalOrders, setModalOrders] = useState(true);
+    const [page, setPage] = useState(10);
+
+    const [currentPage, setCurrentPage] = useState(1);
     const indexOfLastItem = currentPage * page;
     const indexOfFirstItem = indexOfLastItem - page;
-    const currentItems = productList.slice(indexOfFirstItem, indexOfLastItem);
-    const [searchValue, setSearchValue] = useState<string>('');
-
-    console.log(ORDERS_DATA[0].data);
+    const currentItems = ordersList.slice(indexOfFirstItem, indexOfLastItem);
+    const [searchValue, setSearchValue] = useState('');
     
-    const filterProducts = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const filterOrders = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setPage(parseInt(e.target.value));
     }
 
     const nextHandlerPage = () => {
-        if (indexOfLastItem < productList.length) {
+        if (indexOfLastItem < ordersList.length) {
             setCurrentPage(currentPage + 1);
         }
     }
@@ -52,22 +51,22 @@ const Orders: FC = () => {
         const value = e.target.value.toLowerCase();
         setSearchValue(value);
 
-        const searchList = CLIENTS_DATA.filter(item => {
+        const searchList = ordersData.filter(item => {
             return (
-                item.name.toLowerCase().includes(value) ||
-                item.phone.toLowerCase().includes(value) ||
-                (item.lastName !== null && (item.lastName.toLowerCase().includes(value))) ||
-                (item.email !== null && (item.email.toLowerCase().includes(value)))
+                (item.user.name !== null && (item.user.name.toLowerCase().includes(value))) ||
+                item.order_number.toLowerCase().includes(value) ||
+                // item.date.toLowerCase().includes(value) ||
+                (item.user.lastName !== null && (item.user.lastName.toLowerCase().includes(value)))
             );
         });
     
-        setProductsList(searchList);
+        setOrdersList(searchList);
         setCurrentPage(1);
     }
 
     const handleEmpty = () => {
         setSearchValue('');
-        setProductsList(CLIENTS_DATA);
+        setOrdersList(ordersData);
         setCurrentPage(1);
     }
 
@@ -80,8 +79,8 @@ const Orders: FC = () => {
                 value={searchValue}
                />
                 <SearchFilter 
-                      filterProducts={filterProducts} 
-                      list={productList}  
+                      filterProducts={filterOrders} 
+                      list={ordersList}  
                       page={page}
                       nextPage={nextHandlerPage}
                       prevPage={prevHandlerPage}
@@ -91,8 +90,11 @@ const Orders: FC = () => {
             </div>  
             <>
                 <TableHeader/>
-                <TableList list={currentItems}/>
+                <TableList list={currentItems} />
             </>
+            <ModalOrders
+                modalOrders = {modalOrders}
+            /> 
         </div>
     );
 }

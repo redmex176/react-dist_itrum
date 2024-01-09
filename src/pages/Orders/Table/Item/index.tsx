@@ -1,42 +1,52 @@
 import React from "react";
 import styles from "./style.module.scss";
+import { Orders } from "../../../../types/orders";
+
 
 interface TableListItemProps {
-    email: string;
-    phone: string;
-    name: string;
-    lastName: string;
+    item: Orders[];
+    id: string;
+    order_type: string;
+    total: number;
+    isViewedByAdmin: boolean;
+    order_number: string;
+    delivery_type: string;
+    isPayed: boolean;
+    user: {
+      id: string | null;
+      name: string | null;
+      lastName: string | null;
+      secondName: string | null;
+      firmName: string | null;
+      role: string | null;
+    };
+    warehouse: { city: string };
+    date: string;
 }
 
-const TableListItem: React.FC<TableListItemProps> = ({
-    email,
-    phone,
-    name,
-    lastName,
-}) => {
-    function formatPhoneNumber(phoneNumber: string) {
-        const cleaned = ("" + phoneNumber).replace(/\D/g, "");
-
-        const match = cleaned.match(/^(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})$/);
-        if (!match) {
-            return phoneNumber;
-        }
-        return `+${match[1]} (${match[2]}) ${match[3]}-${match[4]}-${match[5]}`;
-    }
-    const formattedPhoneNumber = formatPhoneNumber(phone);
+const TableListItem: React.FC<TableListItemProps> = (item) => {
 
     return (
         <ul className={styles.list__item}>
             <li>
                 <span>
-                    {name} {lastName}
+                   {item.user.name} {item.user.lastName}
                 </span>
             </li>
             <li>
-                <span>{email}</span>
+                <span>{item.order_number}</span>
             </li>
             <li>
-                <span>{formattedPhoneNumber}</span>
+               {item.delivery_type == 'DELIVERY' ? <span>Доставка</span> : <span>Самовывоз</span>}
+            </li>
+            <li>
+                <span>{item.date}</span>
+            </li>
+            <li>
+                <span>{Math.ceil(item.total)} ₽</span>
+            </li>
+            <li>
+                {item.isPayed ? <span>Да</span> : <span>Нет</span>}
             </li>
         </ul>
     );

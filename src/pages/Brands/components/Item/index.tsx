@@ -1,4 +1,4 @@
-// ListItem.tsx
+
 import styles from './style.module.scss';
 import ImgDefault from '../../../../assets/img/img_brands-default.svg?react';
 import EditSvg from '../../../../assets/icon/edit.svg?react';
@@ -50,8 +50,8 @@ const ListItem: React.FC<ListItemProps> = ({
   };
 
   const handleCancelClick = () => {
-    setIsEdit(false);
-    setInputEditValue("");
+     setIsEdit(false);
+     setInputEditValue("");
   };
 
 

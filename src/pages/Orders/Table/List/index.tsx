@@ -2,26 +2,24 @@ import React from 'react';
 import TableListItem from '../Item/index';
 
 import styles from './style.module.scss';
-
-interface ListItem {
-  name: string;
-  phone: string;
-}
+import { Orders } from '../../../../types/orders';
 
 interface TableListProps {
-  list: ListItem[];
+    list: Orders[];
 }
 
 const TableList: React.FC<TableListProps> = ({ list }) => {
+
   return (
     <div className={styles.table__list}>
-      {list.map((item: ListItem) => (
+      {list.map((item: Orders) => (
         <TableListItem
-              email={''} lastName={''} key={item.name + item.phone}
-              {...item}        />
+              item={[]} key={item.id}
+              {...item}/>   
       ))}
     </div>
   );
+
 }
 
 export default TableList;
